@@ -2,9 +2,11 @@ package hoteluq.model.reserva;
 
 import hoteluq.model.clientes.Cliente;
 import hoteluq.model.hotel.Habitacion;
-
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * ENTIDAD PRINCIPAL DEL DOMINIO CON PATRÓN STATE INTEGRADO:
