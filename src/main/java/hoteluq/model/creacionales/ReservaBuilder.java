@@ -13,8 +13,8 @@ import hoteluq.model.servicios.ComponenteServicio;
 import hoteluq.model.promociones.Promocion;
 
 /**
- * Implementación del patrón de diseño creacional <b>Builder</b> para la clase {@link Reserva}.
- * Permite la construcción paso a paso de objetos Reserva complejos, garantizando que
+ * Implementación del patrón de diseño creacional Builder para la clase Reserva
+ * permite la construcción paso a paso de objetos Reserva complejos, garantizando que
  * no se generen instancias inconsistentes o que violen las reglas de negocio iniciales.
  */
 public class ReservaBuilder {
