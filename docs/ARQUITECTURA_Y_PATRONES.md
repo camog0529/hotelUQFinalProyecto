@@ -49,6 +49,7 @@ La pestaña **Promociones** permite crear, editar, activar/desactivar y eliminar
 | Memento | `MementoTarjeta`, `ComandoProcesarPago`, `Cliente` | Conserva el saldo anterior al comando y permite restaurarlo con un movimiento de reversión en la bitácora. |
 | Mediator | `MediadorReservas`, `ProcesadorPago`, `ObservadorPuntos` | Coordina disponibilidad, cobro, confirmación, persistencia en memoria y notificaciones sin que la vista orqueste esos objetos. |
 | Visitor | `VisitanteEstadisticas`, `VisitanteReporte`, `HotelUQFacade` | Separa el cálculo de estadísticas y la generación del contenido del reporte de las entidades de reserva. |
+| Chain of Responsibility | `ManejadorFiltro`, `FiltroDisponibilidad` | Encadena filtros de habitaciones: cada manejador aplica una regla y pasa los resultados al siguiente. `FiltroDisponibilidad` valida el rango de fechas y conserva las habitaciones disponibles; la estructura permite agregar otros filtros, como precio o capacidad. |
 
 ## Principios SOLID evidenciados
 
