@@ -1,0 +1,140 @@
+/* Paleta de colores globales y tipografía base */
+.main-container {
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-background-color: #f8f9fa;
+}
+
+.auth-container {
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-background-color: #f8f9fa;
+}
+.auth-title {
+    -fx-text-fill: #1e293b;
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+}
+
+/* Estilos de la barra lateral (Sidebar) */
+.sidebar {
+    -fx-background-color: #1e293b;
+    -fx-pref-width: 260;
+}
+.sidebar-title {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+.sidebar-subtitle {
+    -fx-text-fill: #94a3b8;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+/* Botones de navegación lateral */
+.sidebar-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #cbd5e1;
+    -fx-font-size: 14px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-pref-width: 220;
+    -fx-padding: 12 15 12 15;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+.sidebar-button:hover {
+    -fx-background-color: #334155;
+    -fx-text-fill: #ffffff;
+}
+.sidebar-button.active {
+    -fx-background-color: #2563eb;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+}
+
+/* Títulos y textos de contenido principal */
+.content-title {
+    -fx-text-fill: #0f172a;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+.content-subtitle {
+    -fx-text-fill: #64748b;
+    -fx-font-size: 13px;
+}
+.section-title {
+    -fx-text-fill: #1e293b;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+/* Contenedores de formularios */
+.form-container {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+}
+.form-label {
+    -fx-text-fill: #334155;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+}
+.text-field, .combo-box, .date-picker {
+    -fx-pref-width: 200;
+    -fx-pref-height: 35;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: #cbd5e1;
+    -fx-background-color: #ffffff;
+}
+.text-field:focused, .combo-box:focused, .date-picker:focused {
+    -fx-border-color: #2563eb;
+    -fx-border-width: 1.5;
+}
+
+/* Estilos de botones de acción */
+.btn-primary {
+    -fx-background-color: #2563eb;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-pref-height: 38;
+    -fx-padding: 0 25 0 25;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+.btn-primary:hover {
+    -fx-background-color: #1d4ed8;
+}
+.btn-secondary {
+    -fx-background-color: #e2e8f0;
+    -fx-text-fill: #334155;
+    -fx-font-weight: bold;
+    -fx-pref-height: 38;
+    -fx-padding: 0 20 0 20;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+.btn-secondary:hover {
+    -fx-background-color: #cbd5e1;
+}
+
+/* Tablas estilizadas (TableView) */
+.table-view {
+    -fx-background-color: transparent;
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 6;
+}
+.table-view .column-header-background {
+    -fx-background-color: #f1f5f9;
+}
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-text-fill: #475569;
+    -fx-font-weight: bold;
+    -fx-size: 40;
+}
+.table-row-cell:filled {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #f1f5f9;
+    -fx-border-width: 0 0 1 0;
+}

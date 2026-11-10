@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hoteluq.controller.MainController" stylesheets="@../css/Styles.css" styleClass="main-container">
+
+    <!-- Barra Lateral -->
+    <left>
+        <VBox styleClass="sidebar" spacing="15">
+            <padding>
+                <Insets top="30" right="20" bottom="30" left="20"/>
+            </padding>
+            <Label text="HotelUQ" styleClass="sidebar-title"/>
+            <Label text="SISTEMA INTEGRAL" styleClass="sidebar-subtitle"/>
+            <VBox spacing="10">
+                <Button text="Gestionar Reservas" styleClass="sidebar-button, active"/>
+                <Button text="Clientes y Tarjetas" styleClass="sidebar-button" fx:id="btnNavClientes"/>
+                <Button text="Cerrar sesión" styleClass="sidebar-button" fx:id="btnCerrarSesion"/>
+            </VBox>
+        </VBox>
+    </left>
+
+    <!-- Contenido Principal -->
+    <center>
+        <VBox spacing="20">
+            <padding>
+                <Insets top="25" right="25" bottom="25" left="25"/>
+            </padding>
+
+            <VBox spacing="5">
+                <Label text="Creación de Reservas" styleClass="content-title"/>
+                <Label text="Registre reservas complejas utilizando el patrón Builder unificado con el Mediador central." styleClass="content-subtitle"/>
+            </VBox>
+
+            <!-- Formulario Operativo -->
+            <GridPane hgap="15" vgap="15" styleClass="form-container">
+                <padding>
+                    <Insets top="20" right="20" bottom="20" left="20"/>
+                </padding>
+
+                <Label text="Cliente autenticado:" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="form-label"/>
+                <Label fx:id="lblClienteActual" GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="form-label"/>
+
+                <Label text="Habitación:" GridPane.columnIndex="2" GridPane.rowIndex="0" styleClass="form-label"/>
+                <ComboBox fx:id="cmbHabitaciones" promptText="Seleccione recurso" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+
+                <Label text="Fecha Entrada:" GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="form-label"/>
+                <DatePicker fx:id="dpEntrada" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                <Label text="Fecha Salida:" GridPane.columnIndex="2" GridPane.rowIndex="1" styleClass="form-label"/>
+                <DatePicker fx:id="dpSalida" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+
+                <!-- Sección Adicional para Servicios Premium (Sección 4 del Main) -->
+                <Label text="Servicios Extra:" GridPane.columnIndex="0" GridPane.rowIndex="2" styleClass="form-label"/>
+                <FlowPane hgap="14" vgap="8" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2">
+                    <CheckBox fx:id="chkSpa" text="Acceso Premium a Spa ($50,000)"/>
+                    <CheckBox fx:id="chkDesayuno" text="Desayuno ($25,000)"/>
+                    <CheckBox fx:id="chkParqueadero" text="Parqueadero ($15,000)"/>
+                    <CheckBox fx:id="chkSeguroCancelacion" text="Seguro cancelación ($30,000)"/>
+                </FlowPane>
+                <Label text="Promoción:" GridPane.columnIndex="0" GridPane.rowIndex="3" styleClass="form-label"/>
+                <ComboBox fx:id="cmbPromociones" promptText="Opcional: selecciona una promoción" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="3"/>
+            </GridPane>
+
+            <HBox spacing="15" alignment="CENTER_RIGHT">
+                <Button text="Cancelar reserva seleccionada" styleClass="btn-secondary" onAction="#handleCancelarReserva"/>
+                <Button text="Calcular Costo" styleClass="btn-secondary" onAction="#handleCalcularCosto"/>
+                <Button text="Confirmar y Pagar con Tarjeta" styleClass="btn-primary" onAction="#handleConfirmarReserva"/>
+            </HBox>
+
+            <!-- Bitácora del Repositorio -->
+            <VBox spacing="10" VBox.vgrow="ALWAYS">
+                <Label text="Reservas registradas" styleClass="section-title"/>
+                <TableView fx:id="tablaReservas" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colId" text="ID Reserva" prefWidth="120"/>
+                        <TableColumn fx:id="colCliente" text="Cliente ID" prefWidth="120"/>
+                        <TableColumn fx:id="colHabitacion" text="Habitación" prefWidth="100"/>
+                        <TableColumn fx:id="colEstado" text="Estado" prefWidth="120"/>
+                        <TableColumn fx:id="colTotal" text="Total Pagado" prefWidth="140"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </VBox>
+    </center>
+</BorderPane>

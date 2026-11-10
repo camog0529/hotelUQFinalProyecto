@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="hoteluq.controller.AdminController"
+            stylesheets="@../css/Styles.css" styleClass="main-container">
+    <top>
+        <HBox spacing="12" alignment="CENTER_LEFT" styleClass="sidebar">
+            <padding><Insets top="16" right="20" bottom="16" left="20"/></padding>
+            <Label text="Administración HotelUQ" styleClass="sidebar-title" HBox.hgrow="ALWAYS"/>
+            <Button fx:id="btnCerrarSesion" text="Cerrar sesión" styleClass="btn-secondary"/>
+        </HBox>
+    </top>
+    <center>
+        <TabPane tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Panel general">
+                    <content>
+                        <VBox spacing="14">
+                            <padding><Insets top="18" right="20" bottom="20" left="20"/></padding>
+                            <Label text="Operación del hotel" styleClass="content-title"/>
+                            <HBox spacing="10" alignment="CENTER_LEFT" styleClass="form-container">
+                                <padding><Insets top="10" right="12" bottom="10" left="12"/></padding>
+                                <Label text="Recargar tarjeta:" styleClass="form-label"/>
+                                <TextField fx:id="txtCedulaCliente" promptText="Cédula"/>
+                                <TextField fx:id="txtMontoRecarga" promptText="Monto"/>
+                                <Button text="Registrar recarga" onAction="#handleRecargarSaldo" styleClass="btn-primary"/>
+                            </HBox>
+                            <HBox spacing="10" alignment="CENTER_LEFT" styleClass="form-container">
+                                <padding><Insets top="10" right="12" bottom="10" left="12"/></padding>
+                                <Label text="Registrar habitación:" styleClass="form-label"/>
+                                <TextField fx:id="txtNumeroHabitacion" promptText="Número"/>
+                                <ComboBox fx:id="cmbTipoHabitacion" promptText="Tipo"/>
+                                <TextField fx:id="txtTarifaHabitacion" promptText="Tarifa por noche"/>
+                                <Button text="Agregar" onAction="#handleRegistrarHabitacion" styleClass="btn-primary"/>
+                            </HBox>
+                            <HBox spacing="18" prefHeight="230" VBox.vgrow="ALWAYS">
+                                <PieChart fx:id="chartOcupacion" title="Ocupación actual" HBox.hgrow="ALWAYS"/>
+                                <BarChart fx:id="chartReservasPorTipo" title="Reservas por tipo" HBox.hgrow="ALWAYS">
+                                    <xAxis><CategoryAxis label="Tipo de habitación"/></xAxis>
+                                    <yAxis><NumberAxis label="Reservas" forceZeroInRange="true"/></yAxis>
+                                </BarChart>
+                            </HBox>
+                            <Label text="Reservas" styleClass="section-title"/>
+                            <TableView fx:id="tablaReservas" VBox.vgrow="ALWAYS">
+                                <columns>
+                                    <TableColumn fx:id="colId" text="Código" prefWidth="145"/>
+                                    <TableColumn fx:id="colCliente" text="Cliente" prefWidth="170"/>
+                                    <TableColumn fx:id="colHabitacion" text="Habitación" prefWidth="110"/>
+                                    <TableColumn fx:id="colEstado" text="Estado" prefWidth="120"/>
+                                    <TableColumn fx:id="colTotal" text="Total" prefWidth="140"/>
+                                </columns>
+                            </TableView>
+                            <HBox spacing="12" alignment="CENTER_RIGHT">
+                                <Button text="Cancelar reserva (hotel)" onAction="#handleCancelarReserva" styleClass="btn-secondary"/>
+                                <Button text="Exportar ingresos TXT" onAction="#handleExportarReporte" styleClass="btn-primary"/>
+                                <Button text="Actualizar" onAction="#refrescarDatos" styleClass="btn-secondary"/>
+                            </HBox>
+                        </VBox>
+                    </content>
+                </Tab>
+                <Tab text="Clientes">
+                    <content>
+                        <VBox spacing="12">
+                            <padding><Insets top="18" right="20" bottom="20" left="20"/></padding>
+                            <Label text="Gestión de clientes" styleClass="content-title"/>
+                            <HBox spacing="10" styleClass="form-container" alignment="CENTER_LEFT">
+                                <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
+                                <TextField fx:id="txtClienteCedula" promptText="Cédula"/>
+                                <TextField fx:id="txtClienteNombre" promptText="Nombre completo"/>
+                                <TextField fx:id="txtClienteCorreo" promptText="Correo"/>
+                                <PasswordField fx:id="txtClienteContrasena" promptText="Contraseña: nueva o restablecer"/>
+                            </HBox>
+                            <HBox spacing="10" alignment="CENTER_RIGHT">
+                                <Button text="Guardar / actualizar" onAction="#handleGuardarCliente" styleClass="btn-primary"/>
+                                <Button text="Eliminar seleccionado" onAction="#handleEliminarCliente" styleClass="btn-secondary"/>
+                                <Button text="Limpiar" onAction="#handleLimpiarCliente" styleClass="btn-secondary"/>
+                            </HBox>
+                            <TableView fx:id="tablaClientes" VBox.vgrow="ALWAYS">
+                                <columns>
+                                    <TableColumn fx:id="colClienteCedula" text="Cédula" prefWidth="120"/>
+                                    <TableColumn fx:id="colClienteNombre" text="Nombre" prefWidth="190"/>
+                                    <TableColumn fx:id="colClienteCorreo" text="Correo" prefWidth="230"/>
+                                    <TableColumn fx:id="colClienteSaldo" text="Saldo" prefWidth="140"/>
+                                    <TableColumn fx:id="colClientePuntos" text="Puntos" prefWidth="100"/>
+                                </columns>
+                            </TableView>
+                            <Label text="Para conservar el historial, no se permite eliminar clientes que ya tienen reservas." styleClass="content-subtitle" wrapText="true"/>
+                        </VBox>
+                    </content>
+                </Tab>
+                <Tab text="Promociones">
+                    <content>
+                        <VBox spacing="12">
+                            <padding><Insets top="18" right="20" bottom="20" left="20"/></padding>
+                            <Label text="Gestión de promociones" styleClass="content-title"/>
+                            <FlowPane hgap="9" vgap="9" styleClass="form-container" alignment="CENTER_LEFT">
+                                <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
+                                <TextField fx:id="txtPromoCodigo" promptText="Código"/>
+                                <TextField fx:id="txtPromoDescripcion" promptText="Descripción"/>
+                                <DatePicker fx:id="dpPromoInicio" promptText="Desde"/>
+                                <DatePicker fx:id="dpPromoFin" promptText="Hasta"/>
+                                <ComboBox fx:id="cmbPromoTipo" promptText="Tipo (todos)"/>
+                                <TextField fx:id="txtPromoNoches" promptText="Noches mín."/>
+                                <TextField fx:id="txtPromoPorcentaje" promptText="Descuento %"/>
+                                <CheckBox fx:id="chkPromoActiva" text="Activa" selected="true"/>
+                            </FlowPane>
+                            <HBox spacing="10" alignment="CENTER_RIGHT">
+                                <Button text="Guardar / actualizar" onAction="#handleGuardarPromocion" styleClass="btn-primary"/>
+                                <Button text="Eliminar seleccionada" onAction="#handleEliminarPromocion" styleClass="btn-secondary"/>
+                                <Button text="Limpiar" onAction="#handleLimpiarPromocion" styleClass="btn-secondary"/>
+                            </HBox>
+                            <TableView fx:id="tablaPromociones" VBox.vgrow="ALWAYS">
+                                <columns>
+                                    <TableColumn fx:id="colPromoCodigo" text="Código" prefWidth="100"/>
+                                    <TableColumn fx:id="colPromoDescripcion" text="Descripción" prefWidth="210"/>
+                                    <TableColumn fx:id="colPromoInicio" text="Desde" prefWidth="105"/>
+                                    <TableColumn fx:id="colPromoFin" text="Hasta" prefWidth="105"/>
+                                    <TableColumn fx:id="colPromoTipo" text="Habitación" prefWidth="120"/>
+                                    <TableColumn fx:id="colPromoNoches" text="Noches mín." prefWidth="100"/>
+                                    <TableColumn fx:id="colPromoPorcentaje" text="Descuento" prefWidth="100"/>
+                                    <TableColumn fx:id="colPromoActiva" text="Activa" prefWidth="80"/>
+                                </columns>
+                            </TableView>
+                            <Label text="El cliente solo verá códigos activos que cumplan fechas, tipo de habitación y mínimo de noches." styleClass="content-subtitle" wrapText="true"/>
+                        </VBox>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+</BorderPane>
